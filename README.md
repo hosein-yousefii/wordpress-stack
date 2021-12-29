@@ -29,9 +29,13 @@ Before deploying wordpress stack, it's better to have a storage class on your cl
 All these services have their own svc, pvc, congifmaps and secret so you just need to replace the neccessary values which face your requirements. Mysql in this stack deploy as a headless service and manage wordpress database (default password for mysql is "qazwsx"). filebrowser manage wordpress files, so you are able to easily upload and download any thing you wish. phpmyadmin responsibility is manage your mysql databases.
 
 It's vital to khnow that there is an Ingress service which route all terrafic to these services based on your URI:
+
 phpmyadmin.hosein.local refer to phpmyadmin
+
 file.hosein.local       refer to filebrowser
+
 mail.hosein.local       refer to poste mailserver
+
 hosein.local            refer to your wordpress site
 
 you should add these subdomain to your dns server with a correct LoadBalancer IP.
