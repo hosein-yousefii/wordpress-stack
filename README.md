@@ -45,7 +45,7 @@ you should add these subdomain to your dns server with a correct LoadBalancer IP
 You can deploy all these services by executing deploy script:
 
 ```bash
-./deploy
+./deploy.sh
 ```
 At the end it shows your loadbalancer ip related to kubernetes cluster in order to add to your dns server or hosts file.
 
