@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: wordpress-stack
+  name: wordpress
+  labels:
+     app.kubernetes.io/name: wordpress
+     app.kubernetes.io/creator: hossein-yousefi
+     app.kubernetes.io/stack: wordpress
+     app.kubernetes.io/env: production
+spec:
+  ports:
+    - port: 80
+  selector:
+     app.kubernetes.io/name: wordpress
+     app.kubernetes.io/creator: hossein-yousefi
+     app.kubernetes.io/stack: wordpress
+     app.kubernetes.io/env: production
+  type: ClusterIP

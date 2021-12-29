@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: wordpress-stack
+  labels:
+     app.kubernetes.io/name: mysql
+     app.kubernetes.io/creator: hossein-yousefi
+     app.kubernetes.io/stack: wordpress
+     app.kubernetes.io/env: production
+spec:
+  ports:
+  - port: 3306
+  clusterIP: None
+  selector:
+     app.kubernetes.io/name: mysql
+     app.kubernetes.io/creator: hossein-yousefi
+     app.kubernetes.io/stack: wordpress
+     app.kubernetes.io/env: production
+
+

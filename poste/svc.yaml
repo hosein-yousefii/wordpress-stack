@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: poste
+  namespace: wordpress-stack
+  labels:
+     app.kubernetes.io/name: poste
+     app.kubernetes.io/creator: hossein-yousefi
+     app.kubernetes.io/stack: wordpress
+     app.kubernetes.io/env: production
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 443
+  - name: smtp
+    port: 25
+    targetPort: 25
+  - name: pop3
+    port: 110
+    targetPort: 110
+  - name: imap
+    port: 143
+    targetPort: 143
+  - name: smtps
+    port: 465
+    targetPort: 465
+  - name: msa
+    port: 587
+    targetPort: 587
+  - name: imaps
+    port: 993
+    targetPort: 993
+  - name: pop3s
+    port: 995
+    targetPort: 995
+  - name: sieve
+    port: 4190
+    targetPort: 4190
+  type: ClusterIP
+
+  selector:
+     app.kubernetes.io/name: poste
+     app.kubernetes.io/creator: hossein-yousefi
+     app.kubernetes.io/stack: wordpress
+     app.kubernetes.io/env: production
+
+
+

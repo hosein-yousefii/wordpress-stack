@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: wordpress-stack
+  name: wordpress-custom-options
+  labels:
+    app.kubernetes.io/name: wordpress
+    app.kubernetes.io/creator: hossein-yousefi
+    app.kubernetes.io/stack: wordpress
+    app.kubernetes.io/env: production
+data:
+  .htaccess: |
+    php_value upload_max_filesize 64M
+    php_value post_max_size 64M
+    php_value memory_limit 128M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+  uploads.ini: |
+    file_uploads = On
+    memory_limit 128M
+    upload_max_filesize 64M
+    post_max_size 64M
+    max_execution_time 300
+    max_input_time 300
+  WORDPRESS_CONFIG_EXTRA: |
+    define('WP_MEMORY_LIMIT', '64M');
+    define('WP_HOME','http://hosein.local');
+    define('WP_SITEURL','http://hosein.local');
+    @ini_set( 'upload_max_size', '64M' );
+    @ini_set( 'post_max_size', '64M');
+    @ini_set( 'max_execution_time', '300' );

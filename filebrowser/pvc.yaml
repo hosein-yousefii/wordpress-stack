@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: wordpress-stack
+  name: fb-pv-claim
+  labels:
+    app.kubernetes.io/name: filebrowser
+    app.kubernetes.io/creator: hossein-yousefi
+    app.kubernetes.io/stack: wordpress
+    app.kubernetes.io/env: production
+
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 400M
+  storageClassName: glusterfs      
+

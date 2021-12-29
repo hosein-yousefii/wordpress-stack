@@ -1,0 +1,68 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  namespace: wordpress-stack
+  name: filebrowser
+  labels:
+    app.kubernetes.io/name: filebrowser
+    app.kubernetes.io/creator: hossein-yousefi
+    app.kubernetes.io/stack: wordpress
+    app.kubernetes.io/env: production
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: filebrowser
+      app.kubernetes.io/creator: hossein-yousefi
+      app.kubernetes.io/stack: wordpress
+      app.kubernetes.io/env: production
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: filebrowser
+      app.kubernetes.io/creator: hossein-yousefi
+      app.kubernetes.io/stack: wordpress
+      app.kubernetes.io/env: production
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: filebrowser
+        app.kubernetes.io/creator: hossein-yousefi
+        app.kubernetes.io/stack: wordpress
+        app.kubernetes.io/env: production
+    spec:
+      containers:
+      - image: filebrowser/filebrowser:v2
+        name: filebrowser
+        resources:
+          limits:
+            cpu: 750m
+            memory: "750Mi"
+          requests:
+            memory: "100Mi"
+            cpu: "120m"    
+        ports:
+        - containerPort: 80
+          name: filebrowser
+        volumeMounts:
+        - name: filebrowser-wordpress-storage
+          mountPath: /srv
+        - name: filebrowser-settings
+          mountPath: /.filebrowser.json
+          subPath: settings
+
+      volumes:
+      - name: filebrowser-settings
+        configMap:
+          name: filebrowser-setting
+      - name: filebrowser-config
+        persistentVolumeClaim:
+          claimName: fb-pv-claim
+      - name: filebrowser-wordpress-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim
+
