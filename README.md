@@ -54,4 +54,3 @@ At the end it shows your loadbalancer ip related to kubernetes cluster in order 
 You are able to add other features related to this stack or expand it, it would be great to implement a master/slave mysql or anything you want.
 Copyright 2021 Hosein Yousefi <yousefi.hosein.o@gmail.com>
 
-[@dwsclass](https://github.com/dwsclass) dws-ops-011-kubernetes
